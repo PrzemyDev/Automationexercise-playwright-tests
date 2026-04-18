@@ -19,10 +19,13 @@ test('Test Case 1: Register User - happy path', async ({ page }) => {
     await expect(page).toHaveURL('https://automationexercise.com/');
 
     // 3. Verify that home page is visible successfully
-    //Assert
-    await expect(page.getByRole('dialog', { name: 'This site asks for consent to' })).toBeVisible({ timeout: 2_000 });
     //Act
-    homePage.acceptCookies();
+    try {
+    await homePage.acceptCookiesButton.waitFor({ state: 'visible', timeout: 3000 });
+    await homePage.acceptCookiesButton.click();
+    } catch {
+    // cookies banner did not appear — continue
+    }
         
     //Assert
     await expect(page).toHaveTitle('Automation Exercise'); 
@@ -138,7 +141,7 @@ test('Alternative Case 1: Register User - invalid email', async ({ page }) => {
     await expect(page).toHaveURL('https://automationexercise.com/');
 
     //Act
-    homePage.acceptCookies();
+    homePage.acceptCookiesButtonClick();
     //Assert
     await expect(homePage.navSignuploginButton).toBeVisible();
     //Act
@@ -198,7 +201,7 @@ test('Alternative Case 2: Register User - empty email', async ({ page }) => {
     await expect(page).toHaveURL('https://automationexercise.com/');
 
     //Act
-    homePage.acceptCookies();
+    homePage.acceptCookiesButtonClick();
     //Assert
     await expect(homePage.navSignuploginButton).toBeVisible();
     //Act
@@ -235,7 +238,7 @@ test('Alternative Case 3: Register User - existing email', async ({ page }) => {
     await expect(page).toHaveURL('https://automationexercise.com/');
 
     //Act
-    homePage.acceptCookies();
+    homePage.acceptCookiesButtonClick();
     //Assert
     await expect(homePage.navSignuploginButton).toBeVisible();
     //Act

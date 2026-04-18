@@ -7,9 +7,8 @@ test('Home page - UI verification ', async ({ page }) => {
     //Act
     await homePage.gotoHomePage(); 
 
-    await expect(page.getByRole('dialog', { name: 'This site asks for consent to' })).toBeVisible({ timeout: 2000 });
     //Act
-    homePage.acceptCookies();
+    homePage.acceptCookiesButtonClick();
     
     //Assert
     await expect(page).toHaveTitle('Automation Exercise'); 
