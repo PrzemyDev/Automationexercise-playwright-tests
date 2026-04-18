@@ -15,14 +15,6 @@ export class HomePage {
         getByRole('button', { name: 'Consent' });
     } 
 
-    async acceptCookiesButtonClick(){
-        try {
-            await this.acceptCookiesButton.waitFor({ state: 'visible', timeout: 3000 });
-            await this.acceptCookiesButton.click();
-    } catch {
-    // cookies banner did not appear — continue
-    }
-    }
     
     //Navigation bar (Home, Products, Cart, Signup/login, Contact Us)
     get navigationBar(){
@@ -84,4 +76,12 @@ export class HomePage {
     async goToAuthPage(){
         await (this.navSignuploginButtonClick());
     }
+
+    async acceptCookiesButtonClick(){
+        try {
+            await this.acceptCookiesButton.waitFor({ state: 'visible', timeout: 3000 });
+            await this.acceptCookiesButton.click();
+    } catch {
+    // cookies banner did not appear — continue
+    }}
 }

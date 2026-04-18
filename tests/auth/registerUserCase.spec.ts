@@ -20,12 +20,7 @@ test('Test Case 1: Register User - happy path', async ({ page }) => {
 
     // 3. Verify that home page is visible successfully
     //Act
-    try {
-    await homePage.acceptCookiesButton.waitFor({ state: 'visible', timeout: 3000 });
-    await homePage.acceptCookiesButton.click();
-    } catch {
-    // cookies banner did not appear — continue
-    }
+    homePage.acceptCookiesButtonClick();
         
     //Assert
     await expect(page).toHaveTitle('Automation Exercise'); 
