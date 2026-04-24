@@ -51,25 +51,16 @@ export class HomePage {
         locator('div').filter({ hasText: 'AutomationExercise Full-' }).nth(4);
     }
     
-    // get loggedUsernameDisplayed(){
-    //     return this.page.
-    //     // getByText('Logged in as ');   //#TODO bro, different 
-    //     getByText(`/Logged in as /*`);
-    // }
 
     async loggedUsernameDisplayed(username: string){
         const regex = new RegExp(`^Logged in as ${username}.*`);
-        return this.page.getByText(regex);  //#TODO #HERE
+        return this.page.getByText(regex);
     }
 
     async gotoHomePage(){
         await this.page.goto('https://automationexercise.com/');
     }
 
-
-    async acceptCookies(){
-        await this.page.getByRole('button', { name: 'Consent' }).click();    
-    }
 
     //nav = menu navigation buttons
     async verifyNavigationButtonsVisibile(){
@@ -92,7 +83,7 @@ export class HomePage {
         await this.navSignuploginButton.click();
     }
 
-    async acceptCookiesButtonClick(){
+    async acceptCookies(){
         try {
             await this.acceptCookiesButton.waitFor({ state: 'visible', timeout: 3000 });
             await this.acceptCookiesButton.click();

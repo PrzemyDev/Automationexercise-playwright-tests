@@ -28,7 +28,7 @@ test('Test Case 2: Login User with correct email and password - happy path', asy
     await expect(page).toHaveURL('https://automationexercise.com/');
 
     //Act
-    await homePage.acceptCookiesButtonClick();
+    await homePage.acceptCookies();
 
     //3. Verify that home page is visible successfully
      //Assert - Business buttons (Home, Products, Cart, Signup/login, Contact Us)

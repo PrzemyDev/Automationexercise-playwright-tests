@@ -12,7 +12,7 @@ test('Home page - UI verification ', async ({ page }) => {
     await homePage.gotoHomePage(); 
 
     //Act
-    homePage.acceptCookiesButtonClick();
+    homePage.acceptCookies();
     
     //Assert
     await expect(page).toHaveTitle('Automation Exercise'); 

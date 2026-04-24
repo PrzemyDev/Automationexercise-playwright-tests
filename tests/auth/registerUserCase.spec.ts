@@ -28,7 +28,7 @@ test('Test Case 1: Register User - happy path', async ({ page }) => {
 
     // 3. Verify that home page is visible successfully
     //Act
-    await homePage.acceptCookiesButtonClick();
+    await homePage.acceptCookies();
         
     //Assert
     await expect(page).toHaveTitle('Automation Exercise'); 
