@@ -15,7 +15,6 @@ export class HomePage {
         getByRole('button', { name: 'Consent' });
     } 
 
-    
     //Navigation bar (Home, Products, Cart, Signup/login, Contact Us)
     get navigationBar(){
         return this.page.
@@ -41,6 +40,7 @@ export class HomePage {
         return this.page.
         getByRole('link', { name: ' Signup / Login' });
     }
+
     get navContactUsButton(){
         return this.page.
         getByRole('link', { name: ' Contact us' });
@@ -51,7 +51,17 @@ export class HomePage {
         locator('div').filter({ hasText: 'AutomationExercise Full-' }).nth(4);
     }
     
-    
+    // get loggedUsernameDisplayed(){
+    //     return this.page.
+    //     // getByText('Logged in as ');   //#TODO bro, different 
+    //     getByText(`/Logged in as /*`);
+    // }
+
+    async loggedUsernameDisplayed(username: string){
+        const regex = new RegExp(`^Logged in as ${username}.*`);
+        return this.page.getByText(regex);  //#TODO #HERE
+    }
+
     async gotoHomePage(){
         await this.page.goto('https://automationexercise.com/');
     }
@@ -61,20 +71,25 @@ export class HomePage {
         await this.page.getByRole('button', { name: 'Consent' }).click();    
     }
 
+    //nav = menu navigation buttons
+    async verifyNavigationButtonsVisibile(){
+        await this.navHomeButton.isVisible();
+        await this.navProductsButton.isVisible();
+        await this.navCartButton.isVisible();
+        await this.navSignuploginButton.isVisible();
+        await this.navContactUsButton.isVisible();
+    }
 
-    async navHomeButtonClick(){
+    async navToHomePage(){
         await this.navHomeButton.click();
     }
-    // Navigation only required (for now):
+    // Navigation to, (only required/used for now):
         // Products
         // Cart
-    async navSignuploginButtonClick(){
-        await this.navSignuploginButton.click();
-    }
         // Contact Us
     
-    async goToAuthPage(){
-        await (this.navSignuploginButtonClick());
+    async navToAuthPage(){
+        await this.navSignuploginButton.click();
     }
 
     async acceptCookiesButtonClick(){
@@ -84,4 +99,6 @@ export class HomePage {
     } catch {
     // cookies banner did not appear — continue
     }}
+
+    
 }

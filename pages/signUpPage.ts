@@ -1,10 +1,10 @@
 import { Page } from '@playwright/test';
 
-export class SingUpPage {
+export class SignUpPage {
     private page: Page;
 
     /*
-    *singUpPage - interactions with register page step 2
+    *signUpPage - interactions with register page step 2
     */
     constructor(page: Page) {
         this.page = page;
@@ -20,7 +20,7 @@ export class SingUpPage {
     }
     
     get accountNameInput(){
-        //Username - not first name (from 1 step of sing up)
+        //Username - not first name (from 1 step of sign up)
         return this.page.
         getByRole('textbox', { name: 'Name *', exact: true });
     }

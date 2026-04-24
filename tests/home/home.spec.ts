@@ -1,9 +1,13 @@
-import { test, expect, Page, Browser, chromium, firefox, webkit } from '@playwright/test';
+import { test, expect } from '@playwright/test';
 import { HomePage } from '../../pages/homePage';
 
+test.describe('HomePage tests', () => {
+    let homePage: HomePage;
+    test.beforeEach(async ({ page }) => {
+        homePage = new HomePage(page);
+    });
 test('Home page - UI verification ', async ({ page }) => {
 
-    const homePage = new HomePage(page);
     //Act
     await homePage.gotoHomePage(); 
 
@@ -23,12 +27,8 @@ test('Home page - UI verification ', async ({ page }) => {
     await expect(homePage.navigationBar).toBeVisible(); 
 
     //Assert - Business buttons (Home, Products, Cart, Signup/login, Contact Us)
-    await expect(homePage.navHomeButton).toBeVisible();
-    await expect(homePage.navProductsButton).toBeVisible();
-    await expect(homePage.navCartButton).toBeVisible();
-    await expect(homePage.navSignuploginButton).toBeVisible();
-    await expect(homePage.navContactUsButton).toBeVisible();
-
+    await homePage.verifyNavigationButtonsVisibile();
+    
     //Assert - Slider Carousel visible
     await expect(homePage.sliderCarousel).toBeVisible();
     
@@ -45,4 +45,5 @@ test('Home page - UI verification ', async ({ page }) => {
     //Assert - Footer
     await expect(page.locator('div').filter({ hasText: 'Copyright © 2021 All rights' }).nth(2)).toBeVisible();
 
-})
+    });
+});
